@@ -1,7 +1,13 @@
-//input enter event
-function enterValue() {
+//input enter even
+const input = document.getElementById('enter');
+const button = document.getElementById('addbutton');
 
-  if (event.keyCode === 13) {
+input.addEventListener('keypress',enterValue);
+button.addEventListener('click',additem);
+
+function enterValue(e) {
+  
+  if (e.keyCode === 13) {
     additem();
   }
 }
@@ -9,23 +15,19 @@ function enterValue() {
 //add new item function :
 function additem() {
 
-  let inputValue = document.getElementById('enter').value;
+  let inputValue = input.value;
   //取得輸入activity值
   // console.log(inputValue);
 
-  if (inputValue === '') {
+  if(inputValue !== '') {
 
-    alert('Please enter an activity!');
-
-  } else {
-
-    var activityList = document.getElementById('itemList');
+    const activityList = document.getElementById('itemList');
     //宣告itemList節點 (activity list)
 
-    var createDiv = document.createElement('div');
-    var createP = document.createElement('p');
-    var createEditIcon = document.createElement('i');
-    var createDeleteIcon = document.createElement('i');
+    const createDiv = document.createElement('div');
+    const createP = document.createElement('p');
+    const createEditIcon = document.createElement('i');
+    const createDeleteIcon = document.createElement('i');
     //var creatElement
 
     createDiv.className = 'activity'
@@ -52,8 +54,6 @@ function additem() {
 
 //delete activity function
 function deleteItem() {
-
-
   let item = this.parentNode; //DeleteIcon 的父層
   let itemlist = this.parentNode.parentNode; //DeleteIcon 的父層的父層
 
@@ -96,9 +96,6 @@ function editItem() {
         item.replaceChild(addNewP, originalP);
 
       }e.currentTarget.blur();  //呼叫blur()清除input
-
     }
-
   })
-
 }
